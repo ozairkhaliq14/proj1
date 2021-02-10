@@ -8,22 +8,46 @@ let ax = 3;
 let xspeed = 5;
 let yspeed = 5;
 let strokeVal = 10;
+let frX = 0.001;
+let frY = 0.001;
+let frZ = 0.01;
 
   
 
 
-function randomNumber(min, max) {  
-    return Math.random() * (max - min) + min; 
-}  
+
 
 
 
 function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
-    background(67, 70, 75);
+    background(255, 255, 255);
 }
 
 function draw(){
+  
+  if (keyIsDown(88)) {
+     rotateX(frameCount * frX)
+     }
+  else if (keyIsDown(89)) {
+     rotateY(frameCount * frX)
+     }
+  else if (keyIsDown(90)) {
+     rotateZ(frameCount * frX)
+     }
+  else if (keyIsDown(65)) {
+     rotateX(frameCount * frX)
+     rotateY(frameCount * frX)
+     rotateZ(frameCount * frX)
+     }
+  else if (keyIsDown(70)) {
+     rotateX(frameCount * 0.1)
+     rotateY(frameCount * 0.1)
+     rotateZ(frameCount * 0.1)
+     }
+  else if (keyIsDown(13)) {
+    clear();
+  }
     
   
   if(x > windowWidth) {
@@ -159,27 +183,29 @@ function draw(){
      
     }
   
-    ax = ax * 8;
-    translate(width / 6, height / 6);
-    rotate(PI / ax);
+    //ax = ax * 8;
+    //translate(width / 6, height / 6);
+    //rotate(PI / ax);
 
-  rotateX(frameCount * 0.001);
-  rotateY(frameCount * 0.001);
-  rotateZ(frameCount * 0.01);
   
-  function keyPressed() {
-  if (keyCode === UP_ARROW) {
-    strokeVal = strokeVal + 10;
-  } else if (keyCode === DOWN_ARROW) {
-    strokeVal = strokeVal - 10;
-  }
-  }
+  
+  
+  
+  
+  
+  //rotateX(frameCount * frX);
+  //rotateY(frameCount * frY);
+  //rotateZ(frameCount * frZ);
+  
+  
     
     
   stroke(strokeVal);
-  //cone(x, y);
+  //cone(x*2, y*2);
   //fill (67, 70, 75);
   cylinder(x, y);
+  orbitControl();
+  
   
   
   //x = x + xspeed;
